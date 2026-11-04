@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ recipe.title }} — Технологическая карта</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 25px; background: #f4f6f9; color: #333; }
+        a.back { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 20px; color: #2980b9; text-decoration: none; font-size: 14.5px; font-weight: 600; }
+        a.back:hover { text-decoration: underline; }
+        .detail-card { background: white; border-radius: 8px; padding: 32px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border: 1px solid #e2e8f0; }
+        h1 { margin-top: 0; color: #1e293b; font-size: 24px; line-height: 1.3; }
+        .meta-info { display: flex; flex-wrap: wrap; gap: 20px; color: #64748b; font-size: 13.5px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid #e2e8f0; }
+        .meta-info span strong { color: #334155; }
+        h2 { color: #2980b9; font-size: 17px; margin-top: 25px; margin-bottom: 12px; border-bottom: 2px solid #ebf5fb; padding-bottom: 6px; }
+        p.desc { color: #475569; line-height: 1.6; font-size: 14.5px; margin: 0; }
+        .pre-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 15px 18px; font-family: inherit; font-size: 14px; line-height: 1.7; color: #334155; white-space: pre-wrap; margin: 0; }
+    </style>
+</head>
+<body>
+    <a class="back" href="/recipes/">&larr; Вернуться к каталогу рецептов</a>
+
+    <div class="detail-card">
+        <h1>{{ recipe.title }}</h1>
+        <div class="meta-info">
+            <span>Раздел: <strong>{{ recipe.category.name }}</strong></span>
+            <span>Источник: <strong>pbprog.ru/tk/tt</strong></span>
+            <span>Дата публикации: <strong>{{ recipe.published_at|date:"d.m.Y" }}</strong></span>
+        </div>
+
+        <h2>Описание и назначение блюда</h2>
+        <p class="desc">{{ recipe.description }}</p>
+
+        <h2>Раскладка продуктов (ингредиенты)</h2>
+        <div class="pre-box">{{ recipe.ingredients }}</div>
+
+        <h2>Технология приготовления</h2>
+        <div class="pre-box">{{ recipe.steps }}</div>
+    </div>
+</body>
+</html>
