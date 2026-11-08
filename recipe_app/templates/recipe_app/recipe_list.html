@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Рецепты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            margin: 20px;
+        }
+        h1 {
+            color: black;
+        }
+        a {
+            color: blue;
+            text-decoration: underline;
+        }
+        .categories {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid gray;
+            background-color: white;
+        }
+        .categories a {
+            margin-right: 12px;
+        }
+        .categories a.active {
+            font-weight: bold;
+            color: black;
+        }
+        .recipe-item {
+            border: 1px solid gray;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: white;
+        }
+        .recipe-item h2 {
+            margin-top: 0;
+            font-size: 18px;
+            color: black;
+        }
+        .category-name {
+            color: gray;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+        .desc {
+            color: black;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Книга рецептов</h1>
+
+    <div class="categories">
+        <span>Категории: </span>
+        <a href="/" {% if not active_category %}class="active"{% endif %}>Все</a>
+        {% for cat in categories %}
+        <a href="/?category={{ cat.slug }}" {% if active_category == cat.slug %}class="active"{% endif %}>
+            {{ cat.name }}
+        </a>
+        {% endfor %}
+    </div>
+
+    <div>
+        {% if recipes %}
+            {% for recipe in recipes %}
+            <div class="recipe-item">
+                <div class="category-name">Категория: {{ recipe.category.name }}</div>
+                <h2><a href="/{{ recipe.pk }}/">{{ recipe.title }}</a></h2>
+                <p class="desc">{{ recipe.description }}</p>
+                <p><a href="/{{ recipe.pk }}/">Читать рецепт полностью</a></p>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>Ничего не найдено.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
