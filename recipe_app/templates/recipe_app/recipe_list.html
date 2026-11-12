@@ -17,6 +17,28 @@
             color: blue;
             text-decoration: underline;
         }
+        .search-box {
+            margin-bottom: 15px;
+        }
+        .search-box input {
+            padding: 6px;
+            font-size: 14px;
+            border: 1px solid gray;
+            color: black;
+            background-color: white;
+        }
+        .search-box button {
+            padding: 6px 12px;
+            font-size: 14px;
+            background-color: gray;
+            color: white;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        .search-box a {
+            margin-left: 10px;
+            font-size: 14px;
+        }
         .categories {
             margin-bottom: 20px;
             padding: 10px;
@@ -54,6 +76,19 @@
 </head>
 <body>
     <h1>Книга рецептов</h1>
+
+    <div class="search-box">
+        <form method="get" action="/">
+            <input type="text" name="q" value="{{ query }}" placeholder="Поиск рецепта...">
+            {% if active_category %}
+            <input type="hidden" name="category" value="{{ active_category }}">
+            {% endif %}
+            <button type="submit">Найти</button>
+            {% if query %}
+            <a href="{% if active_category %}/?category={{ active_category }}{% else %}/{% endif %}">Сбросить</a>
+            {% endif %}
+        </form>
+    </div>
 
     <div class="categories">
         <span>Категории: </span>
