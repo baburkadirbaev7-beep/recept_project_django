@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: recept-project-django
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn recipe_app.wsgi:application"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.8
